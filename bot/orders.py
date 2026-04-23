@@ -1,5 +1,6 @@
 from bot.client import get_client
 import logging
+import time
 
 def place_order(symbol, side, order_type, quantity, price=None):
     client = get_client()
@@ -31,4 +32,14 @@ def place_order(symbol, side, order_type, quantity, price=None):
     except Exception as e:
         error_msg = str(e)
         logging.error(f"Error placing order: {error_msg}")
-        return {"error": error_msg}
+
+        # 🔹 Simulated response
+        simulated_order = {
+            "orderId": int(time.time()),
+            "status": "FAILED (Simulated)",
+            "executedQty": "0",
+            "avgPrice": "0",
+            "error": error_msg
+        }
+
+        return simulated_order
